@@ -27,7 +27,7 @@
 								<option id="nvcc.compiler.option.level.961614860" name="Generate host debug information (-g)" superClass="nvcc.compiler.option.level" value="true" valueType="boolean"/>
 								<option defaultValue="nvcc.compiler.optimization.level.none" id="nvcc.compiler.optimization.level.1293331967" name="Optimization Level" superClass="nvcc.compiler.optimization.level" valueType="enumerated"/>
 								<option id="nvcc.compiler.pic.392349653" name="Position Independent Code (-fPIC)" superClass="nvcc.compiler.pic"/>
-								<option id="nvcc.compiler.cpp11option.1982840890" superClass="nvcc.compiler.cpp11option" value="true" valueType="boolean"/>
+								<option id="nvcc.compiler.cpp11option.1982840890" name="Enable C++11 support (-std=c++11)" superClass="nvcc.compiler.cpp11option" value="true" valueType="boolean"/>
 								<inputType id="nvcc.compiler.input.cu.897372954" superClass="nvcc.compiler.input.cu"/>
 								<inputType id="nvcc.compiler.input.cpp.1070154361" superClass="nvcc.compiler.input.cpp"/>
 								<inputType id="nvcc.compiler.input.c.991786679" superClass="nvcc.compiler.input.c"/>
@@ -44,8 +44,16 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<folderInfo id="com.nvidia.cuda.ide.eight_zero.configuration.debug.201004131.1928214695" name="/" resourcePath="rply-1.01">
+						<toolChain id="com.nvidia.cuda.tools.toolchain.eight_zero.exe.debug.444252871" name="CUDA Toolkit 8.0" superClass="com.nvidia.cuda.tools.toolchain.eight_zero.exe.debug" unusedChildren="">
+							<tool id="nvcc.compiler.base.1493293103" name="NVCC Compiler" superClass="nvcc.compiler.base.1494511999"/>
+							<tool id="nvcc.linker.base.1320898015" name="NVCC Linker" superClass="nvcc.linker.base.316761986"/>
+							<tool id="nvcc.archiver.base.1397695529" name="NVCC Archiver" superClass="nvcc.archiver.base.115971445"/>
+							<tool id="com.nvidia.host.assembler.613129498" name="Host Assembler" superClass="com.nvidia.host.assembler.456077952"/>
+						</toolChain>
+					</folderInfo>
 					<sourceEntries>
-						<entry excluding="inc|src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="rply-1.01|utils|inc|src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="inc"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>

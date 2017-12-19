@@ -11,20 +11,54 @@
 #pragma once
 
 #include <memory>
-#include <boost/make_unique.hpp>
+#include <string>
 
 namespace ply
 {
-class plyParser
-{
 
+typedef struct
+{
+	float x;
+	float y;
+	float z;
+}Point3;
+
+typedef struct
+{
+	int r;
+	int g;
+	int b;
+}RGBColor;
+
+typedef struct
+{
+	int r;
+	int g;
+	int b;
+	int a;
+}RGBAColor;
+
+
+typedef struct
+{
+	Point3 position;
+	RGBAColor color;
+
+}Vertex;
+
+
+//.PLY file Parser
+class PLYParser
+{
 	//Methods
 public:
-	plyParser();
-	~plyParser();
+	PLYParser();
+	~PLYParser();
 
-	plyParser(plyParser&&);
-	plyParser& operator=(plyParser&&);
+	PLYParser(PLYParser&&);
+	PLYParser& operator=(PLYParser&&);
+
+	PLYParser(std::string fileName);
 
 private:
 
@@ -32,8 +66,8 @@ private:
 	//Attributes
 private:
 	class impl;
-	std::unique_ptr<impl> pImpl;
-
+	//std::unique_ptr<impl> p_impl;
+	impl *p_impl;
 };
 }
 
