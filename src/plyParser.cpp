@@ -65,6 +65,23 @@ public:
 	}
 
 	//========================================================================================
+	//Display Vertices Positions
+	//========================================================================================
+	void displayVerticesPos()
+	{
+		std::for_each(m_vertices.begin(), m_vertices.end(), [](const Vertex& v) { std::cout << v.position.x << ":" << v.position.y << ":" << v.position.z << std::endl; });
+	}
+
+	//========================================================================================
+	//Display Vertices Positions
+	//========================================================================================
+	void displayVerticesColor()
+	{
+		std::for_each(m_vertices.begin(), m_vertices.end(), [](const Vertex& v) { std::cout << v.color.r << ":" << v.color.g << ":" << v.color.b << std::endl; });
+	}
+
+private:
+	//========================================================================================
 	//Split string according to a delimiter
 	//========================================================================================
 	std::vector<std::string> split(const std::string &iString, char iDelimiter)
@@ -81,22 +98,6 @@ public:
 		return items;
 	}
 
-
-	//========================================================================================
-	//Display Vertices Positions
-	//========================================================================================
-	void displayVerticesPos()
-	{
-		std::for_each(m_vertices.begin(), m_vertices.end(), [](const Vertex& v) { std::cout << v.position.x << ":" << v.position.y << ":" << v.position.z << std::endl; });
-	}
-
-	//========================================================================================
-	//Display Vertices Positions
-	//========================================================================================
-	void displayVerticesColor()
-	{
-		std::for_each(m_vertices.begin(), m_vertices.end(), [](const Vertex& v) { std::cout << v.color.r << ":" << v.color.g << ":" << v.color.b << std::endl; });
-	}
 
 
 	//Attributes

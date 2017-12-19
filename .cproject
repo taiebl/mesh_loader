@@ -44,16 +44,9 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<folderInfo id="com.nvidia.cuda.ide.eight_zero.configuration.debug.201004131.1928214695" name="/" resourcePath="rply-1.01">
-						<toolChain id="com.nvidia.cuda.tools.toolchain.eight_zero.exe.debug.444252871" name="CUDA Toolkit 8.0" superClass="com.nvidia.cuda.tools.toolchain.eight_zero.exe.debug" unusedChildren="">
-							<tool id="nvcc.compiler.base.1493293103" name="NVCC Compiler" superClass="nvcc.compiler.base.1494511999"/>
-							<tool id="nvcc.linker.base.1320898015" name="NVCC Linker" superClass="nvcc.linker.base.316761986"/>
-							<tool id="nvcc.archiver.base.1397695529" name="NVCC Archiver" superClass="nvcc.archiver.base.115971445"/>
-							<tool id="com.nvidia.host.assembler.613129498" name="Host Assembler" superClass="com.nvidia.host.assembler.456077952"/>
-						</toolChain>
-					</folderInfo>
 					<sourceEntries>
-						<entry excluding="rply-1.01|utils|inc|src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="gl|rply-1.01|utils|inc|src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="gl"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="inc"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
@@ -112,7 +105,8 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="inc|src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="gl|inc|src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="gl"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="inc"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
