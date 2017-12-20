@@ -1,6 +1,6 @@
 src/main.o : ../src/main.cpp \
     /usr/include/stdc-predef.h \
-    ../src/../inc/plyParser.h \
+    ../src/../inc/plyReader.h \
     /usr/include/c++/5/memory \
     /usr/include/c++/5/bits/stl_algobase.h \
     /usr/include/x86_64-linux-gnu/c++/5/bits/c++config.h \
@@ -131,4 +131,5 @@ src/main.o : ../src/main.cpp \
     /usr/include/c++/5/ext/aligned_buffer.h \
     /usr/include/c++/5/bits/shared_ptr_atomic.h \
     /usr/include/c++/5/bits/atomic_base.h \
-    /usr/include/c++/5/backward/auto_ptr.h
+    /usr/include/c++/5/backward/auto_ptr.h \
+    ../src/../rendering/renderer.h

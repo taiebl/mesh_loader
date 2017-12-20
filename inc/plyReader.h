@@ -5,8 +5,8 @@
  *      Author: taieb
  */
 
-#ifndef PLYPARSER_H_
-#define PLYPARSER_H_
+#ifndef PLYREADER_H_
+#define PLYREADER_H_
 
 #pragma once
 
@@ -41,24 +41,30 @@ typedef struct
 
 typedef struct
 {
+	int id;
 	Point3 position;
 	RGBAColor color;
 
 }Vertex;
 
+typedef struct
+{
+	int id;
+	int vertexID[3];
+}Face;
 
 //.PLY file Parser
-class PLYParser
+class PLYReader
 {
 	//Methods
 public:
-	PLYParser();
-	~PLYParser();
+	PLYReader();
+	~PLYReader();
 
-	PLYParser(PLYParser&&);
-	PLYParser& operator=(PLYParser&&);
+	PLYReader(PLYReader&&);
+	PLYReader& operator=(PLYReader&&);
 
-	PLYParser(std::string fileName);
+	PLYReader(std::string fileName);
 
 private:
 

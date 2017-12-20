@@ -1,6 +1,6 @@
-src/plyParser.o : ../src/plyParser.cpp \
+src/plyReader.o : ../src/plyReader.cpp \
     /usr/include/stdc-predef.h \
-    ../src/../inc/plyParser.h \
+    ../src/../inc/plyReader.h \
     /usr/include/c++/5/memory \
     /usr/include/c++/5/bits/stl_algobase.h \
     /usr/include/x86_64-linux-gnu/c++/5/bits/c++config.h \

@@ -5,14 +5,23 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <assert.h>
 
 // OpenGL Graphics includes
-//#include <../GL/helper_gl.h>
+#include <helper_gl.h>
 #include <GL/freeglut.h>
-#include <GL/gl.h>
+
+/*#include <GL/gl.h>
 #include <GL/glx.h>
 #include <GL/glu.h>
+#include <GL/glext.h>
+#include <GL/glxext.h>*/
 
+// CUDA Includes
+#include <cuda_gl_interop.h>
+
+// User Includes
+#include "renderer.h"
 
 #define MAX_EPSILON_ERROR 10.0f
 #define THRESHOLD          0.30f
@@ -38,14 +47,13 @@ float translate_z = -3.0;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Forward Declarations
-bool runTest(int argc, char **argv, char *ref_file);
+bool render(int argc, char **argv);
 void cleanup();
 
 // GL functionality
 bool initGL(int *argc, char **argv);
-void createVBO(GLuint *vbo, struct cudaGraphicsResource **vbo_res,
-               unsigned int vbo_res_flags);
-void deleteVBO(GLuint *vbo, struct cudaGraphicsResource *vbo_res);
+void createVBO(GLuint *vbo);
+void deleteVBO(GLuint *vbo);
 
 // rendering callbacks
 void display();
@@ -63,7 +71,7 @@ bool initGL(int *argc, char **argv)
     glutInit(argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
     glutInitWindowSize(window_width, window_height);
-    glutCreateWindow("Cuda GL Interop (VBO)");
+    glutCreateWindow("3D Model Rendering");
     glutDisplayFunc(display);
     glutKeyboardFunc(keyboard);
     glutMotionFunc(motion);
@@ -93,10 +101,43 @@ bool initGL(int *argc, char **argv)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+//Render Function
+////////////////////////////////////////////////////////////////////////////////
+bool render(int argc, char **argv)
+{
+
+    // Initialize OpenGL context
+    if ( false == initGL(&argc, argv) )
+    {
+        return false;
+    }
+
+	// Register callbacks
+    glutDisplayFunc(display);
+    glutKeyboardFunc(keyboard);
+    glutMouseFunc(mouse);
+    glutMotionFunc(motion);
+#if defined (__APPLE__) || defined(MACOSX)
+    atexit(cleanup);
+#else
+    glutCloseFunc(cleanup);
+#endif
+
+    // Create VBO
+    createVBO(&vbo);
+
+    // Run the cuda part
+    //runCuda(&cuda_vbo_resource);
+
+    // Start rendering mainloop
+    glutMainLoop();
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
 //! Create VBO
 ////////////////////////////////////////////////////////////////////////////////
-void createVBO(GLuint *vbo, struct cudaGraphicsResource **vbo_res,
-               unsigned int vbo_res_flags)
+void createVBO(GLuint *vbo)
 {
     assert(vbo);
 
@@ -119,11 +160,11 @@ void createVBO(GLuint *vbo, struct cudaGraphicsResource **vbo_res,
 ////////////////////////////////////////////////////////////////////////////////
 //! Delete VBO
 ////////////////////////////////////////////////////////////////////////////////
-void deleteVBO(GLuint *vbo, struct cudaGraphicsResource *vbo_res)
+void deleteVBO(GLuint *vbo)
 {
 
     // unregister this buffer object with CUDA
-    checkCudaErrors(cudaGraphicsUnregisterResource(vbo_res));
+    //checkCudaErrors(cudaGraphicsUnregisterResource(vbo_res));
 
     glBindBuffer(1, *vbo);
     glDeleteBuffers(1, vbo);
@@ -201,7 +242,7 @@ void cleanup()
 
     if (vbo)
     {
-        deleteVBO(&vbo, cuda_vbo_resource);
+        deleteVBO(&vbo);
     }
 }
 

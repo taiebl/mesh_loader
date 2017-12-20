@@ -1,11 +1,12 @@
 
-#include "../inc/plyParser.h"
-
+#include "../inc/plyReader.h"
+#include "../rendering/renderer.h"
 
 int main(int argc, char **argv)
 {
 	std::string plyFileName = "../data/part1_.ply";
-	ply::PLYParser *parser = new ply::PLYParser(plyFileName);
+	ply::PLYReader *parser = new ply::PLYReader(plyFileName);
 
+	render(argc, argv);
 	return 0;
 }
