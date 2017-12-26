@@ -132,6 +132,10 @@ src/plyReader.o : ../src/plyReader.cpp \
     /usr/include/c++/5/bits/shared_ptr_atomic.h \
     /usr/include/c++/5/bits/atomic_base.h \
     /usr/include/c++/5/backward/auto_ptr.h \
+    /usr/include/c++/5/vector \
+    /usr/include/c++/5/bits/stl_vector.h \
+    /usr/include/c++/5/bits/stl_bvector.h \
+    /usr/include/c++/5/bits/vector.tcc \
     /usr/include/c++/5/fstream \
     /usr/include/c++/5/istream \
     /usr/include/c++/5/ios \
@@ -161,10 +165,6 @@ src/plyReader.o : ../src/plyReader.cpp \
     /usr/include/c++/5/sstream \
     /usr/include/c++/5/bits/sstream.tcc \
     /usr/include/c++/5/iostream \
-    /usr/include/c++/5/vector \
-    /usr/include/c++/5/bits/stl_vector.h \
-    /usr/include/c++/5/bits/stl_bvector.h \
-    /usr/include/c++/5/bits/vector.tcc \
     /usr/include/c++/5/algorithm \
     /usr/include/c++/5/bits/stl_algo.h \
     /usr/include/c++/5/bits/algorithmfwd.h \

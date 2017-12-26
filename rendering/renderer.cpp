@@ -6,6 +6,7 @@
 #include <string.h>
 #include <math.h>
 #include <assert.h>
+#include <vector>
 
 // OpenGL Graphics includes
 #include <helper_gl.h>
@@ -30,14 +31,16 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // constants
-const unsigned int window_width  = 512;
-const unsigned int window_height = 512;
+const unsigned int window_width  = 1024;
+const unsigned int window_height = 1024;
 
 const unsigned int mesh_width    = 256;
 const unsigned int mesh_height   = 256;
 
 // vbo variables
 GLuint vbo;
+
+std::vector<ply::Vertex> vertices;
 
 // mouse controls
 int mouse_old_x, mouse_old_y;
@@ -47,7 +50,8 @@ float translate_z = -3.0;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Forward Declarations
-bool render(int argc, char **argv);
+bool render( int argc, char **argv, const ply::PLYReader& model );
+bool renderVertices();
 void cleanup();
 
 // GL functionality
@@ -60,6 +64,7 @@ void display();
 void keyboard(unsigned char key, int x, int y);
 void mouse(int button, int state, int x, int y);
 void motion(int x, int y);
+void reshape(int w, int h);
 void timerEvent(int value);
 
 
@@ -95,7 +100,7 @@ bool initGL(int *argc, char **argv)
     // projection
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(60.0, (GLfloat)window_width / (GLfloat) window_height, 0.1, 10.0);
+    gluPerspective(60.0, (GLfloat)window_width / (GLfloat)window_height, 0.1, 50.0);
 
     return true;
 }
@@ -103,7 +108,7 @@ bool initGL(int *argc, char **argv)
 ////////////////////////////////////////////////////////////////////////////////
 //Render Function
 ////////////////////////////////////////////////////////////////////////////////
-bool render(int argc, char **argv)
+bool render( int argc, char **argv, const ply::PLYReader& model )
 {
 
     // Initialize OpenGL context
@@ -112,11 +117,14 @@ bool render(int argc, char **argv)
         return false;
     }
 
+    vertices = model.getVertices();
+
 	// Register callbacks
     glutDisplayFunc(display);
     glutKeyboardFunc(keyboard);
     glutMouseFunc(mouse);
     glutMotionFunc(motion);
+    glutReshapeFunc(reshape);
 #if defined (__APPLE__) || defined(MACOSX)
     atexit(cleanup);
 #else
@@ -124,7 +132,7 @@ bool render(int argc, char **argv)
 #endif
 
     // Create VBO
-    createVBO(&vbo);
+    //createVBO(&vbo);
 
     // Run the cuda part
     //runCuda(&cuda_vbo_resource);
@@ -133,6 +141,27 @@ bool render(int argc, char **argv)
     glutMainLoop();
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//Render Function
+////////////////////////////////////////////////////////////////////////////////
+bool renderVertices()
+{
+
+	glPointSize(5);
+	glColor3f(1.f,1.f, 1.f);
+
+	for(auto it = vertices.begin(); it != vertices.end(); ++it)
+	{
+		ply::Vertex vertex = *it;
+
+		glBegin(GL_POINTS);
+		glColor4f( vertex.color.r / 255.f, vertex.color.g / 255.f, vertex.color.b / 255.f, vertex.color.a / 255.f);
+		glVertex3f( vertex.position.x, vertex.position.y, vertex.position.z );
+		glEnd();
+	}
+
+	return true;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 //! Create VBO
@@ -186,20 +215,26 @@ void display()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // set view matrix
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+
     glTranslatef(0.0, 0.0, translate_z);
     glRotatef(rotate_x, 1.0, 0.0, 0.0);
     glRotatef(rotate_y, 0.0, 1.0, 0.0);
 
     // render from the vbo
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    /*glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glVertexPointer(4, GL_FLOAT, 0, 0);
 
     glEnableClientState(GL_VERTEX_ARRAY);
     glColor3f(1.0, 0.0, 0.0);
     glDrawArrays(GL_POINTS, 0, mesh_width * mesh_height);
-    glDisableClientState(GL_VERTEX_ARRAY);
+    glDisableClientState(GL_VERTEX_ARRAY);*/
+
+    //Render Vertices
+    renderVertices();
 
     glutSwapBuffers();
 
@@ -233,7 +268,20 @@ void timerEvent(int value)
     {
         glutPostRedisplay();
         glutTimerFunc(REFRESH_DELAY, timerEvent,0);
-    }
+    }		//glVertex3f(0.0, 0.0, 0.0);
+	//glVertex3f(15, 0, 0);
+
+	////glEnd();
+
+	//glLineWidth(2.5);
+	//glColor3f(1.0, 1.0, 1.0);
+	////glBegin(GL_LINES);
+
+	//glVertex3f(0.0, 0.0, 0.0);
+	//glVertex3f(-1.0, 0, 0);
+
+	//glEnd();
+	//glutWireCube(10); // Draw a cube
 }
 
 void cleanup()
@@ -282,4 +330,15 @@ void motion(int x, int y)
 
     mouse_old_x = x;
     mouse_old_y = y;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Window Resizer
+////////////////////////////////////////////////////////////////////////////////
+// This is called when the window has been resized.
+void reshape(int w, int h)
+{
+	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
 }

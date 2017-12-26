@@ -45,40 +45,13 @@ rendering/renderer.o : ../rendering/renderer.cpp \
     /usr/include/x86_64-linux-gnu/bits/mathdef.h \
     /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
     /usr/include/assert.h \
-    /home/taieb/NVIDIA_CUDA-8.0_Samples/common/inc/helper_gl.h \
-    /usr/include/GL/gl.h \
-    /home/taieb/NVIDIA_CUDA-8.0_Samples/common/inc/GL/glext.h \
-    /usr/include/GL/glx.h \
-    /usr/include/X11/Xlib.h \
-    /usr/include/X11/X.h \
-    /usr/include/X11/Xfuncproto.h \
-    /usr/include/X11/Xosdefs.h \
-    /usr/include/X11/Xutil.h \
-    /usr/include/X11/keysym.h \
-    /usr/include/X11/keysymdef.h \
-    /home/taieb/NVIDIA_CUDA-8.0_Samples/common/inc/GL/glxext.h \
-    /usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h \
-    /usr/include/stdint.h \
-    /usr/include/x86_64-linux-gnu/bits/wchar.h \
-    /usr/include/c++/5/iostream \
+    /usr/include/c++/5/vector \
+    /usr/include/c++/5/bits/stl_algobase.h \
     /usr/include/x86_64-linux-gnu/c++/5/bits/c++config.h \
     /usr/include/x86_64-linux-gnu/c++/5/bits/os_defines.h \
     /usr/include/x86_64-linux-gnu/c++/5/bits/cpu_defines.h \
-    /usr/include/c++/5/ostream \
-    /usr/include/c++/5/ios \
-    /usr/include/c++/5/iosfwd \
-    /usr/include/c++/5/bits/stringfwd.h \
-    /usr/include/c++/5/bits/memoryfwd.h \
-    /usr/include/c++/5/bits/postypes.h \
-    /usr/include/c++/5/cwchar \
-    /usr/include/c++/5/exception \
-    /usr/include/c++/5/bits/atomic_lockfree_defines.h \
-    /usr/include/c++/5/bits/exception_ptr.h \
-    /usr/include/c++/5/bits/exception_defines.h \
-    /usr/include/c++/5/bits/nested_exception.h \
-    /usr/include/c++/5/bits/char_traits.h \
-    /usr/include/c++/5/bits/stl_algobase.h \
     /usr/include/c++/5/bits/functexcept.h \
+    /usr/include/c++/5/bits/exception_defines.h \
     /usr/include/c++/5/bits/cpp_type_traits.h \
     /usr/include/c++/5/ext/type_traits.h \
     /usr/include/c++/5/ext/numeric_traits.h \
@@ -92,6 +65,49 @@ rendering/renderer.o : ../rendering/renderer.cpp \
     /usr/include/c++/5/bits/stl_iterator.h \
     /usr/include/c++/5/bits/ptr_traits.h \
     /usr/include/c++/5/bits/predefined_ops.h \
+    /usr/include/c++/5/bits/allocator.h \
+    /usr/include/x86_64-linux-gnu/c++/5/bits/c++allocator.h \
+    /usr/include/c++/5/ext/new_allocator.h \
+    /usr/include/c++/5/new \
+    /usr/include/c++/5/exception \
+    /usr/include/c++/5/bits/atomic_lockfree_defines.h \
+    /usr/include/c++/5/bits/exception_ptr.h \
+    /usr/include/c++/5/bits/nested_exception.h \
+    /usr/include/c++/5/bits/memoryfwd.h \
+    /usr/include/c++/5/bits/stl_construct.h \
+    /usr/include/c++/5/ext/alloc_traits.h \
+    /usr/include/c++/5/bits/alloc_traits.h \
+    /usr/include/c++/5/bits/stl_uninitialized.h \
+    /usr/include/c++/5/bits/stl_vector.h \
+    /usr/include/c++/5/initializer_list \
+    /usr/include/c++/5/bits/stl_bvector.h \
+    /usr/include/c++/5/bits/functional_hash.h \
+    /usr/include/c++/5/bits/hash_bytes.h \
+    /usr/include/c++/5/bits/range_access.h \
+    /usr/include/c++/5/bits/vector.tcc \
+    /home/tlamine/NVIDIA_CUDA-8.0_Samples/common/inc/helper_gl.h \
+    /usr/include/GL/gl.h \
+    /home/tlamine/NVIDIA_CUDA-8.0_Samples/common/inc/GL/glext.h \
+    /usr/include/GL/glx.h \
+    /usr/include/X11/Xlib.h \
+    /usr/include/X11/X.h \
+    /usr/include/X11/Xfuncproto.h \
+    /usr/include/X11/Xosdefs.h \
+    /usr/include/X11/Xutil.h \
+    /usr/include/X11/keysym.h \
+    /usr/include/X11/keysymdef.h \
+    /home/tlamine/NVIDIA_CUDA-8.0_Samples/common/inc/GL/glxext.h \
+    /usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h \
+    /usr/include/stdint.h \
+    /usr/include/x86_64-linux-gnu/bits/wchar.h \
+    /usr/include/c++/5/iostream \
+    /usr/include/c++/5/ostream \
+    /usr/include/c++/5/ios \
+    /usr/include/c++/5/iosfwd \
+    /usr/include/c++/5/bits/stringfwd.h \
+    /usr/include/c++/5/bits/postypes.h \
+    /usr/include/c++/5/cwchar \
+    /usr/include/c++/5/bits/char_traits.h \
     /usr/include/c++/5/cstdint \
     /usr/include/c++/5/bits/localefwd.h \
     /usr/include/x86_64-linux-gnu/c++/5/bits/c++locale.h \
@@ -112,19 +128,11 @@ rendering/renderer.o : ../rendering/renderer.cpp \
     /usr/include/x86_64-linux-gnu/c++/5/bits/atomic_word.h \
     /usr/include/c++/5/bits/locale_classes.h \
     /usr/include/c++/5/string \
-    /usr/include/c++/5/bits/allocator.h \
-    /usr/include/x86_64-linux-gnu/c++/5/bits/c++allocator.h \
-    /usr/include/c++/5/ext/new_allocator.h \
-    /usr/include/c++/5/new \
     /usr/include/c++/5/bits/ostream_insert.h \
     /usr/include/c++/5/bits/cxxabi_forced.h \
     /usr/include/c++/5/bits/stl_function.h \
     /usr/include/c++/5/backward/binders.h \
-    /usr/include/c++/5/bits/range_access.h \
-    /usr/include/c++/5/initializer_list \
     /usr/include/c++/5/bits/basic_string.h \
-    /usr/include/c++/5/ext/alloc_traits.h \
-    /usr/include/c++/5/bits/alloc_traits.h \
     /usr/include/c++/5/ext/string_conversions.h \
     /usr/include/c++/5/cstdlib \
     /usr/include/c++/5/cstdio \
@@ -135,8 +143,6 @@ rendering/renderer.o : ../rendering/renderer.cpp \
     /usr/include/x86_64-linux-gnu/asm/errno.h \
     /usr/include/asm-generic/errno.h \
     /usr/include/asm-generic/errno-base.h \
-    /usr/include/c++/5/bits/functional_hash.h \
-    /usr/include/c++/5/bits/hash_bytes.h \
     /usr/include/c++/5/bits/basic_string.tcc \
     /usr/include/c++/5/bits/locale_classes.tcc \
     /usr/include/c++/5/system_error \
@@ -165,16 +171,10 @@ rendering/renderer.o : ../rendering/renderer.cpp \
     /usr/include/c++/5/bits/algorithmfwd.h \
     /usr/include/c++/5/bits/stl_heap.h \
     /usr/include/c++/5/bits/stl_tempbuf.h \
-    /usr/include/c++/5/bits/stl_construct.h \
     /usr/include/c++/5/random \
     /usr/include/c++/5/cmath \
     /usr/include/c++/5/limits \
     /usr/include/c++/5/bits/random.h \
-    /usr/include/c++/5/vector \
-    /usr/include/c++/5/bits/stl_uninitialized.h \
-    /usr/include/c++/5/bits/stl_vector.h \
-    /usr/include/c++/5/bits/stl_bvector.h \
-    /usr/include/c++/5/bits/vector.tcc \
     /usr/include/c++/5/bits/uniform_int_dist.h \
     /usr/include/x86_64-linux-gnu/c++/5/bits/opt_random.h \
     /usr/lib/gcc/x86_64-linux-gnu/5/include/x86intrin.h \
@@ -235,15 +235,15 @@ rendering/renderer.o : ../rendering/renderer.cpp \
     /usr/include/c++/5/bits/stl_numeric.h \
     /usr/include/c++/5/iterator \
     /usr/include/c++/5/bits/stream_iterator.h \
-    /home/taieb/NVIDIA_CUDA-8.0_Samples/common/inc/GL/freeglut.h \
-    /home/taieb/NVIDIA_CUDA-8.0_Samples/common/inc/GL/freeglut_std.h \
+    /home/tlamine/NVIDIA_CUDA-8.0_Samples/common/inc/GL/freeglut.h \
+    /home/tlamine/NVIDIA_CUDA-8.0_Samples/common/inc/GL/freeglut_std.h \
     /usr/include/GL/glu.h \
-    /home/taieb/NVIDIA_CUDA-8.0_Samples/common/inc/GL/freeglut_ext.h \
-    /usr/local/cuda-8.0/bin/..//include/cuda_gl_interop.h \
-    /usr/local/cuda-8.0/bin/..//include/builtin_types.h \
-    /usr/local/cuda-8.0/bin/..//include/device_types.h \
-    /usr/local/cuda-8.0/bin/..//include/host_defines.h \
-    /usr/local/cuda-8.0/bin/..//include/driver_types.h \
+    /home/tlamine/NVIDIA_CUDA-8.0_Samples/common/inc/GL/freeglut_ext.h \
+    /usr/local/cuda-8.0/bin/../targets/x86_64-linux/include/cuda_gl_interop.h \
+    /usr/local/cuda-8.0/bin/../targets/x86_64-linux/include/builtin_types.h \
+    /usr/local/cuda-8.0/bin/../targets/x86_64-linux/include/device_types.h \
+    /usr/local/cuda-8.0/bin/../targets/x86_64-linux/include/host_defines.h \
+    /usr/local/cuda-8.0/bin/../targets/x86_64-linux/include/driver_types.h \
     /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h \
     /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h \
     /usr/include/limits.h \
@@ -252,7 +252,24 @@ rendering/renderer.o : ../rendering/renderer.cpp \
     /usr/include/linux/limits.h \
     /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
     /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
-    /usr/local/cuda-8.0/bin/..//include/surface_types.h \
-    /usr/local/cuda-8.0/bin/..//include/texture_types.h \
-    /usr/local/cuda-8.0/bin/..//include/vector_types.h \
-    ../rendering/renderer.h
+    /usr/local/cuda-8.0/bin/../targets/x86_64-linux/include/surface_types.h \
+    /usr/local/cuda-8.0/bin/../targets/x86_64-linux/include/texture_types.h \
+    /usr/local/cuda-8.0/bin/../targets/x86_64-linux/include/vector_types.h \
+    ../rendering/renderer.h \
+    ../rendering/../inc/plyReader.h \
+    /usr/include/c++/5/memory \
+    /usr/include/c++/5/bits/stl_raw_storage_iter.h \
+    /usr/include/c++/5/typeinfo \
+    /usr/include/c++/5/ext/concurrence.h \
+    /usr/include/c++/5/bits/uses_allocator.h \
+    /usr/include/c++/5/functional \
+    /usr/include/c++/5/tuple \
+    /usr/include/c++/5/array \
+    /usr/include/c++/5/bits/unique_ptr.h \
+    /usr/include/c++/5/bits/shared_ptr.h \
+    /usr/include/c++/5/bits/shared_ptr_base.h \
+    /usr/include/c++/5/bits/allocated_ptr.h \
+    /usr/include/c++/5/ext/aligned_buffer.h \
+    /usr/include/c++/5/bits/shared_ptr_atomic.h \
+    /usr/include/c++/5/bits/atomic_base.h \
+    /usr/include/c++/5/backward/auto_ptr.h

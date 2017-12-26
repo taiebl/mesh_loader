@@ -132,4 +132,8 @@ src/main.o : ../src/main.cpp \
     /usr/include/c++/5/bits/shared_ptr_atomic.h \
     /usr/include/c++/5/bits/atomic_base.h \
     /usr/include/c++/5/backward/auto_ptr.h \
+    /usr/include/c++/5/vector \
+    /usr/include/c++/5/bits/stl_vector.h \
+    /usr/include/c++/5/bits/stl_bvector.h \
+    /usr/include/c++/5/bits/vector.tcc \
     ../src/../rendering/renderer.h

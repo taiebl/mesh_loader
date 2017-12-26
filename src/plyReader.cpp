@@ -67,6 +67,14 @@ public:
 		}
 	}
 
+	//========================================================================================
+	//Get List of Vertices
+	//========================================================================================
+	std::vector<Vertex> getVertices()
+	{
+		return m_vertices;
+	}
+
 private:
 
 	//========================================================================================
@@ -161,9 +169,9 @@ private:
 			items = split(line, ' ');
 
 			face.id = numFaces++;
-			face.vertexID[0] = std::atof(items[0].c_str());
-			face.vertexID[1] = std::atof(items[1].c_str());
-			face.vertexID[2] = std::atof(items[2].c_str());
+			face.vertexID[0] = std::atof(items[1].c_str());
+			face.vertexID[1] = std::atof(items[2].c_str());
+			face.vertexID[2] = std::atof(items[3].c_str());
 
 			m_faces.push_back(face);
 		}
@@ -246,7 +254,15 @@ PLYReader::PLYReader(std::string fileName)
 	p_impl = new impl;
 	p_impl->m_fileName = fileName;
 	p_impl->run();
-	p_impl->displayData(FACE);
+	p_impl->displayData(VERTEX_POSITION);
+}
+
+//========================================================================================
+//Get List of Vertices
+//========================================================================================
+std::vector<Vertex> PLYReader::getVertices() const
+{
+	return p_impl->getVertices();
 }
 
 }

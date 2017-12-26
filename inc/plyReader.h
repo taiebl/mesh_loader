@@ -1,5 +1,5 @@
 /*
- * plyParser.h
+ * plyReader.h
  *
  *  Created on: Dec 18, 2017
  *      Author: taieb
@@ -12,6 +12,7 @@
 
 #include <memory>
 #include <string>
+#include <vector>
 
 namespace ply
 {
@@ -65,6 +66,8 @@ public:
 	PLYReader& operator=(PLYReader&&);
 
 	PLYReader(std::string fileName);
+
+	std::vector<Vertex> getVertices() const;
 
 private:
 
