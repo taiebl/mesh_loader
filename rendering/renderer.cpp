@@ -7,6 +7,7 @@
 #include <math.h>
 #include <assert.h>
 #include <vector>
+#include <queue>
 
 // OpenGL Graphics includes
 #include <helper_gl.h>
@@ -40,7 +41,7 @@ const unsigned int mesh_height   = 256;
 // vbo variables
 GLuint vbo;
 
-std::vector<ply::Vertex> vertices;
+std::vector<ply::Vertex> g_vertices;
 
 // mouse controls
 int mouse_old_x, mouse_old_y;
@@ -51,7 +52,7 @@ float translate_z = -3.0;
 ////////////////////////////////////////////////////////////////////////////////
 // Forward Declarations
 bool render( int argc, char **argv, const ply::PLYReader& model );
-bool renderVertices();
+bool renderVertices(std::vector<ply::Vertex>& vertices);
 void cleanup();
 
 // GL functionality
@@ -67,6 +68,115 @@ void motion(int x, int y);
 void reshape(int w, int h);
 void timerEvent(int value);
 
+class Renderer::impl
+{
+public:
+
+	////////////////////////////////////////////////////////////////////////////////
+	//! Initialize GL
+	////////////////////////////////////////////////////////////////////////////////
+	bool initGL(int *argc, char **argv, const char* windowTitle)
+	{
+	    //glutInit(argc, argv);
+	    //glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
+	    glutInitWindowSize(window_width, window_height);
+	    glutCreateWindow(windowTitle);
+
+	    glutDisplayFunc(display);
+	    glutKeyboardFunc(keyboard);
+	    glutMotionFunc(motion);
+	    glutReshapeFunc(reshape);
+	    glutTimerFunc(REFRESH_DELAY, timerEvent,0);
+
+	    // initialize necessary OpenGL extensions
+	    if (! isGLVersionSupported(2,0))
+	    {
+	        fprintf(stderr, "ERROR: Support for necessary OpenGL extensions missing.");
+	        fflush(stderr);
+	        return (false);
+	    }
+
+	    // default initialization
+	    glClearColor(0.0, 0.0, 0.0, 1.0);
+	    glDisable(GL_DEPTH_TEST);
+
+	    // viewport
+	    glViewport(0, 0, window_width, window_height);
+
+	    // projection
+	    glMatrixMode(GL_PROJECTION);
+	    glLoadIdentity();
+	    gluPerspective(60.0, (GLfloat)window_width / (GLfloat)window_height, 0.1, 50.0);
+
+	    return (true);
+	}
+
+private:
+
+	std::vector<ply::Vertex> m_vertices;
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+//Renderer Constructors
+////////////////////////////////////////////////////////////////////////////////
+Renderer::Renderer():
+		p_impl(new impl)
+{
+
+}
+
+Renderer::Renderer(int argc, char **argv):
+		p_impl(new impl)
+{
+	glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//Renderer Destructor
+////////////////////////////////////////////////////////////////////////////////
+Renderer::~Renderer()
+{
+	delete(p_impl);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//Main Rendering Function
+////////////////////////////////////////////////////////////////////////////////
+bool Renderer::render( int argc, char **argv, const std::vector<ply::Vertex>& vertices, const char* windowTitle)
+{
+
+    // Initialize OpenGL context
+    if ( false == p_impl->initGL(&argc, argv, windowTitle) )	//p_impl->init(&argc, argv, windowTitle) )
+    {
+        return (false);
+    }
+
+    //Read Vertices
+    g_vertices = vertices;
+
+    std::cout<<"I m here\n";
+    std::cout<<vertices[10].position.x<<":"<<vertices[10].position.y<<vertices[10].position.z<<std::endl;
+    std::cout<<g_vertices[10].position.x<<":"<<g_vertices[10].position.y<<g_vertices[10].position.z<<std::endl;
+
+	// Register callbacks
+    glutDisplayFunc(display);
+    glutKeyboardFunc(keyboard);
+    glutMouseFunc(mouse);
+    glutMotionFunc(motion);
+    glutReshapeFunc(reshape);
+    glutCloseFunc(cleanup);
+
+    // Start rendering mainloop
+    //glutMainLoop();
+}
+
+void Renderer::loop()
+{
+    // Start rendering mainloop
+    glutMainLoop();
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 //! Initialize GL
@@ -80,6 +190,7 @@ bool initGL(int *argc, char **argv)
     glutDisplayFunc(display);
     glutKeyboardFunc(keyboard);
     glutMotionFunc(motion);
+    glutReshapeFunc(reshape);
     glutTimerFunc(REFRESH_DELAY, timerEvent,0);
 
     // initialize necessary OpenGL extensions
@@ -87,7 +198,7 @@ bool initGL(int *argc, char **argv)
     {
         fprintf(stderr, "ERROR: Support for necessary OpenGL extensions missing.");
         fflush(stderr);
-        return false;
+        return (false);
     }
 
     // default initialization
@@ -102,7 +213,7 @@ bool initGL(int *argc, char **argv)
     glLoadIdentity();
     gluPerspective(60.0, (GLfloat)window_width / (GLfloat)window_height, 0.1, 50.0);
 
-    return true;
+    return (true);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -110,14 +221,11 @@ bool initGL(int *argc, char **argv)
 ////////////////////////////////////////////////////////////////////////////////
 bool render( int argc, char **argv, const ply::PLYReader& model )
 {
-
     // Initialize OpenGL context
     if ( false == initGL(&argc, argv) )
     {
-        return false;
+        return (false);
     }
-
-    vertices = model.getVertices();
 
 	// Register callbacks
     glutDisplayFunc(display);
@@ -125,6 +233,7 @@ bool render( int argc, char **argv, const ply::PLYReader& model )
     glutMouseFunc(mouse);
     glutMotionFunc(motion);
     glutReshapeFunc(reshape);
+
 #if defined (__APPLE__) || defined(MACOSX)
     atexit(cleanup);
 #else
@@ -144,9 +253,8 @@ bool render( int argc, char **argv, const ply::PLYReader& model )
 ////////////////////////////////////////////////////////////////////////////////
 //Render Function
 ////////////////////////////////////////////////////////////////////////////////
-bool renderVertices()
+bool renderVertices(std::vector<ply::Vertex>& vertices)
 {
-
 	glPointSize(5);
 	glColor3f(1.f,1.f, 1.f);
 
@@ -160,7 +268,7 @@ bool renderVertices()
 		glEnd();
 	}
 
-	return true;
+	return (true);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -201,7 +309,6 @@ void deleteVBO(GLuint *vbo)
     *vbo = 0;
 }
 
-
 ////////////////////////////////////////////////////////////////////////////////
 //! Display callback
 ////////////////////////////////////////////////////////////////////////////////
@@ -234,7 +341,8 @@ void display()
     glDisableClientState(GL_VERTEX_ARRAY);*/
 
     //Render Vertices
-    renderVertices();
+    renderVertices(g_vertices);
+
 
     glutSwapBuffers();
 
@@ -244,6 +352,94 @@ void display()
     //computeFPS();
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//! Display callback
+////////////////////////////////////////////////////////////////////////////////
+void display_1()
+{
+    std::cout<<"Rendering 1 .....\n";
+
+    //sdkStartTimer(&timer);
+
+    // run CUDA kernel to generate vertex positions
+    //runCuda(&cuda_vbo_resource);
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    // set view matrix
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+    glTranslatef(0.0, 0.0, translate_z);
+    glRotatef(rotate_x, 1.0, 0.0, 0.0);
+    glRotatef(rotate_y, 0.0, 1.0, 0.0);
+
+    // render from the vbo
+    /*glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glVertexPointer(4, GL_FLOAT, 0, 0);
+
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glColor3f(1.0, 0.0, 0.0);
+    glDrawArrays(GL_POINTS, 0, mesh_width * mesh_height);
+    glDisableClientState(GL_VERTEX_ARRAY);*/
+
+    //Render Vertices
+    renderVertices(g_vertices);
+
+
+    glutSwapBuffers();
+
+    //g_fAnim += 0.01f;
+
+    //sdkStopTimer(&timer);
+    //computeFPS();
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//! Display callback
+////////////////////////////////////////////////////////////////////////////////
+void display_2()
+{
+	std::cout<<"Rendering 2 .....\n";
+
+    //sdkStartTimer(&timer);
+
+    // run CUDA kernel to generate vertex positions
+    //runCuda(&cuda_vbo_resource);
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    // set view matrix
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+    glTranslatef(0.0, 0.0, translate_z);
+    glRotatef(rotate_x, 1.0, 0.0, 0.0);
+    glRotatef(rotate_y, 0.0, 1.0, 0.0);
+
+    // render from the vbo
+    /*glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glVertexPointer(4, GL_FLOAT, 0, 0);
+
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glColor3f(1.0, 0.0, 0.0);
+    glDrawArrays(GL_POINTS, 0, mesh_width * mesh_height);
+    glDisableClientState(GL_VERTEX_ARRAY);*/
+
+    //Render Vertices
+    renderVertices(g_vertices);
+
+    glutSwapBuffers();
+
+    //g_fAnim += 0.01f;
+
+    //sdkStopTimer(&timer);
+    //computeFPS();
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 //! Keyboard events handler

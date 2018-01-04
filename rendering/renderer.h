@@ -11,11 +11,22 @@
 
 #pragma once
 
-#include"../inc/plyReader.h"
+#include "../inc/plyReader.h"
+#include <string>
 
-bool render( int argc, char **argv, const ply::PLYReader& model );
-bool renderVertices();
-void cleanup();
 
+class Renderer
+{
+public:
+	Renderer();
+	Renderer(int argc, char **argv);
+	~Renderer();
+
+	bool render( int argc, char **argv, const std::vector<ply::Vertex>& model, const char* windowTitle );
+	void loop();
+private:
+	class impl;
+	impl* p_impl;
+};
 
 #endif

@@ -72,7 +72,7 @@ public:
 	//========================================================================================
 	std::vector<Vertex> getVertices()
 	{
-		return m_vertices;
+		return (m_vertices);
 	}
 
 private:
@@ -130,12 +130,12 @@ private:
 
 		int numVertex = 0;
 
-		for(int i=0; i<m_nbrVertices; ++i)
+		for( int i=0; i<m_nbrVertices; ++i )
 		{
 			std::getline(m_plyFile, line);
 			items = split(line, ' ');
 
-			if(items.size() == m_nbrVertexProps)
+			if( items.size() == m_nbrVertexProps )
 			{
 				vertex.id = numVertex++;
 				vertex.position.x = std::atof(items[0].c_str());
@@ -147,7 +147,7 @@ private:
 				vertex.color.b = std::atof(items[5].c_str());
 				vertex.color.a = std::atof(items[6].c_str());
 
-				m_vertices.push_back(vertex);
+				m_vertices.push_back( vertex );
 			}
 		}
 	}
@@ -163,17 +163,17 @@ private:
 
 		int numFaces = 0;
 
-		for(int i=0; i<m_nbrFaces; ++i)
+		for( int i=0; i<m_nbrFaces; ++i )
 		{
-			std::getline(m_plyFile, line);
-			items = split(line, ' ');
+			std::getline( m_plyFile, line );
+			items = split( line, ' ' );
 
 			face.id = numFaces++;
-			face.vertexID[0] = std::atof(items[1].c_str());
-			face.vertexID[1] = std::atof(items[2].c_str());
-			face.vertexID[2] = std::atof(items[3].c_str());
+			face.vertexID[0] = std::atof( items[1].c_str() );
+			face.vertexID[1] = std::atof( items[2].c_str() );
+			face.vertexID[2] = std::atof( items[3].c_str() );
 
-			m_faces.push_back(face);
+			m_faces.push_back( face );
 		}
 	}
 
@@ -215,7 +215,7 @@ private:
 			items.push_back(item);
 		}
 
-		return items;
+		return (items);
 	}
 
 
@@ -262,7 +262,7 @@ PLYReader::PLYReader(std::string fileName)
 //========================================================================================
 std::vector<Vertex> PLYReader::getVertices() const
 {
-	return p_impl->getVertices();
+	return (p_impl->getVertices());
 }
 
 }

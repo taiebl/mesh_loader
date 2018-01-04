@@ -85,9 +85,18 @@ rendering/renderer.o : ../rendering/renderer.cpp \
     /usr/include/c++/5/bits/hash_bytes.h \
     /usr/include/c++/5/bits/range_access.h \
     /usr/include/c++/5/bits/vector.tcc \
-    /home/tlamine/NVIDIA_CUDA-8.0_Samples/common/inc/helper_gl.h \
+    /usr/include/c++/5/queue \
+    /usr/include/c++/5/deque \
+    /usr/include/c++/5/bits/stl_deque.h \
+    /usr/include/c++/5/bits/deque.tcc \
+    /usr/include/c++/5/bits/stl_heap.h \
+    /usr/include/c++/5/bits/stl_function.h \
+    /usr/include/c++/5/backward/binders.h \
+    /usr/include/c++/5/bits/stl_queue.h \
+    /usr/include/c++/5/bits/uses_allocator.h \
+    /home/taieb/NVIDIA_CUDA-8.0_Samples/common/inc/helper_gl.h \
     /usr/include/GL/gl.h \
-    /home/tlamine/NVIDIA_CUDA-8.0_Samples/common/inc/GL/glext.h \
+    /home/taieb/NVIDIA_CUDA-8.0_Samples/common/inc/GL/glext.h \
     /usr/include/GL/glx.h \
     /usr/include/X11/Xlib.h \
     /usr/include/X11/X.h \
@@ -96,7 +105,7 @@ rendering/renderer.o : ../rendering/renderer.cpp \
     /usr/include/X11/Xutil.h \
     /usr/include/X11/keysym.h \
     /usr/include/X11/keysymdef.h \
-    /home/tlamine/NVIDIA_CUDA-8.0_Samples/common/inc/GL/glxext.h \
+    /home/taieb/NVIDIA_CUDA-8.0_Samples/common/inc/GL/glxext.h \
     /usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h \
     /usr/include/stdint.h \
     /usr/include/x86_64-linux-gnu/bits/wchar.h \
@@ -130,8 +139,6 @@ rendering/renderer.o : ../rendering/renderer.cpp \
     /usr/include/c++/5/string \
     /usr/include/c++/5/bits/ostream_insert.h \
     /usr/include/c++/5/bits/cxxabi_forced.h \
-    /usr/include/c++/5/bits/stl_function.h \
-    /usr/include/c++/5/backward/binders.h \
     /usr/include/c++/5/bits/basic_string.h \
     /usr/include/c++/5/ext/string_conversions.h \
     /usr/include/c++/5/cstdlib \
@@ -169,7 +176,6 @@ rendering/renderer.o : ../rendering/renderer.cpp \
     /usr/include/c++/5/bits/stl_relops.h \
     /usr/include/c++/5/bits/stl_algo.h \
     /usr/include/c++/5/bits/algorithmfwd.h \
-    /usr/include/c++/5/bits/stl_heap.h \
     /usr/include/c++/5/bits/stl_tempbuf.h \
     /usr/include/c++/5/random \
     /usr/include/c++/5/cmath \
@@ -235,15 +241,15 @@ rendering/renderer.o : ../rendering/renderer.cpp \
     /usr/include/c++/5/bits/stl_numeric.h \
     /usr/include/c++/5/iterator \
     /usr/include/c++/5/bits/stream_iterator.h \
-    /home/tlamine/NVIDIA_CUDA-8.0_Samples/common/inc/GL/freeglut.h \
-    /home/tlamine/NVIDIA_CUDA-8.0_Samples/common/inc/GL/freeglut_std.h \
+    /home/taieb/NVIDIA_CUDA-8.0_Samples/common/inc/GL/freeglut.h \
+    /home/taieb/NVIDIA_CUDA-8.0_Samples/common/inc/GL/freeglut_std.h \
     /usr/include/GL/glu.h \
-    /home/tlamine/NVIDIA_CUDA-8.0_Samples/common/inc/GL/freeglut_ext.h \
-    /usr/local/cuda-8.0/bin/../targets/x86_64-linux/include/cuda_gl_interop.h \
-    /usr/local/cuda-8.0/bin/../targets/x86_64-linux/include/builtin_types.h \
-    /usr/local/cuda-8.0/bin/../targets/x86_64-linux/include/device_types.h \
-    /usr/local/cuda-8.0/bin/../targets/x86_64-linux/include/host_defines.h \
-    /usr/local/cuda-8.0/bin/../targets/x86_64-linux/include/driver_types.h \
+    /home/taieb/NVIDIA_CUDA-8.0_Samples/common/inc/GL/freeglut_ext.h \
+    /usr/local/cuda-8.0/bin/..//include/cuda_gl_interop.h \
+    /usr/local/cuda-8.0/bin/..//include/builtin_types.h \
+    /usr/local/cuda-8.0/bin/..//include/device_types.h \
+    /usr/local/cuda-8.0/bin/..//include/host_defines.h \
+    /usr/local/cuda-8.0/bin/..//include/driver_types.h \
     /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h \
     /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h \
     /usr/include/limits.h \
@@ -252,16 +258,15 @@ rendering/renderer.o : ../rendering/renderer.cpp \
     /usr/include/linux/limits.h \
     /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
     /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
-    /usr/local/cuda-8.0/bin/../targets/x86_64-linux/include/surface_types.h \
-    /usr/local/cuda-8.0/bin/../targets/x86_64-linux/include/texture_types.h \
-    /usr/local/cuda-8.0/bin/../targets/x86_64-linux/include/vector_types.h \
+    /usr/local/cuda-8.0/bin/..//include/surface_types.h \
+    /usr/local/cuda-8.0/bin/..//include/texture_types.h \
+    /usr/local/cuda-8.0/bin/..//include/vector_types.h \
     ../rendering/renderer.h \
     ../rendering/../inc/plyReader.h \
     /usr/include/c++/5/memory \
     /usr/include/c++/5/bits/stl_raw_storage_iter.h \
     /usr/include/c++/5/typeinfo \
     /usr/include/c++/5/ext/concurrence.h \
-    /usr/include/c++/5/bits/uses_allocator.h \
     /usr/include/c++/5/functional \
     /usr/include/c++/5/tuple \
     /usr/include/c++/5/array \
