@@ -42,6 +42,7 @@ const unsigned int mesh_height   = 256;
 GLuint vbo;
 
 std::vector<ply::Vertex> g_vertices;
+std::vector<ply::Face> g_faces;
 
 // mouse controls
 int mouse_old_x, mouse_old_y;
@@ -53,6 +54,7 @@ float translate_z = -3.0;
 // Forward Declarations
 bool render( int argc, char **argv, const ply::PLYReader& model );
 bool renderVertices(std::vector<ply::Vertex>& vertices);
+bool renderFaces(std::vector<ply::Face>& faces);
 void cleanup();
 
 // GL functionality
@@ -144,7 +146,7 @@ Renderer::~Renderer()
 ////////////////////////////////////////////////////////////////////////////////
 //Main Rendering Function
 ////////////////////////////////////////////////////////////////////////////////
-bool Renderer::render( int argc, char **argv, const std::vector<ply::Vertex>& vertices, const char* windowTitle)
+bool Renderer::render( int argc, char **argv, const ply::PLYReader& model, const char* windowTitle)
 {
 
     // Initialize OpenGL context
@@ -154,11 +156,8 @@ bool Renderer::render( int argc, char **argv, const std::vector<ply::Vertex>& ve
     }
 
     //Read Vertices
-    g_vertices = vertices;
-
-    std::cout<<"I m here\n";
-    std::cout<<vertices[10].position.x<<":"<<vertices[10].position.y<<vertices[10].position.z<<std::endl;
-    std::cout<<g_vertices[10].position.x<<":"<<g_vertices[10].position.y<<g_vertices[10].position.z<<std::endl;
+    g_vertices = model.getVertices();
+    g_faces = model.getFaces();
 
 	// Register callbacks
     glutDisplayFunc(display);
@@ -251,7 +250,7 @@ bool render( int argc, char **argv, const ply::PLYReader& model )
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-//Render Function
+//Render Vertices Function
 ////////////////////////////////////////////////////////////////////////////////
 bool renderVertices(std::vector<ply::Vertex>& vertices)
 {
@@ -265,6 +264,32 @@ bool renderVertices(std::vector<ply::Vertex>& vertices)
 		glBegin(GL_POINTS);
 		glColor4f( vertex.color.r / 255.f, vertex.color.g / 255.f, vertex.color.b / 255.f, vertex.color.a / 255.f);
 		glVertex3f( vertex.position.x, vertex.position.y, vertex.position.z );
+		glEnd();
+	}
+
+	return (true);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//Render Faces Function
+////////////////////////////////////////////////////////////////////////////////
+bool renderFaces(std::vector<ply::Face>& faces)
+{
+	glPointSize(5);
+	glColor3f(1.f,1.f, 1.f);
+
+	for(auto it = faces.begin(); it != faces.end(); ++it)
+	{
+		ply::Face face = *it;
+
+		glBegin(GL_TRIANGLE_STRIP);
+		//glColor4f( vertex.color.r / 255.f, vertex.color.g / 255.f, vertex.color.b / 255.f, vertex.color.a / 255.f);
+		//glVertex3f( vertex.position.x, vertex.position.y, vertex.position.z );
+		for(int i=0; i<3; ++i)
+		{
+			glVertex3f(g_vertices[face.vertexID[i]].position.x, g_vertices[face.vertexID[i]].position.y, g_vertices[face.vertexID[i]].position.z);
+		}
+
 		glEnd();
 	}
 
@@ -341,8 +366,8 @@ void display()
     glDisableClientState(GL_VERTEX_ARRAY);*/
 
     //Render Vertices
-    renderVertices(g_vertices);
-
+    //renderVertices(g_vertices);
+    renderFaces(g_faces);
 
     glutSwapBuffers();
 

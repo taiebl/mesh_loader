@@ -68,6 +68,7 @@ public:
 	PLYReader(std::string fileName);
 
 	std::vector<Vertex> getVertices() const;
+	std::vector<Face> getFaces() const;
 
 private:
 

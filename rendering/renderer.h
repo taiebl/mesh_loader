@@ -22,7 +22,7 @@ public:
 	Renderer(int argc, char **argv);
 	~Renderer();
 
-	bool render( int argc, char **argv, const std::vector<ply::Vertex>& model, const char* windowTitle );
+	bool render( int argc, char **argv, const ply::PLYReader& model, const char* windowTitle );
 	void loop();
 private:
 	class impl;

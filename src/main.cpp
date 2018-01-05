@@ -2,7 +2,7 @@
 #include "../inc/plyReader.h"
 #include "../rendering/renderer.h"
 
-#define NBR_MODELS	(2)
+#define NBR_MODELS	(1)
 
 int main(int argc, char **argv)
 {
@@ -21,7 +21,7 @@ int main(int argc, char **argv)
 	Renderer renderer = Renderer(argc, argv);
 	for(int i=0; i<NBR_MODELS; ++i)
 	{
-		renderer.render(argc, argv, plyModel[i].getVertices(), window[i]);
+		renderer.render(argc, argv, plyModel[i], window[i]);
 	}
 
 	renderer.loop();
